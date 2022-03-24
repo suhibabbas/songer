@@ -38,7 +38,7 @@ public class SongrController {
         songrRepository.save(albums);
         return new RedirectView("allAlbum");
     }
-    
+
 
     @GetMapping("/allAlbum")
     public String gitAllAlbum(Model model){
