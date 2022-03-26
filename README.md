@@ -14,7 +14,10 @@ spring.datasource.initialization-mode=always
 
 ## Path
 
-1. to view the greeting page use: ```/hello```
-2. to view capitalize page use:```/capitalize```
+1. to view the greeting page use: ```/hello?name={name}```
+2. to view capitalize page use:```/capitalize/{something}```
 3. to view the manual added album use:```/Album```
 4. to add and view the album from data base use ```/allAlbum```
+5. to add and view the new song use ```/song```
+6. to add song to the album by id ```/album/id```
+7. to find album by title ```/album/{title}```
