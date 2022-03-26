@@ -29,7 +29,8 @@
 </form>
 
 <ul th:each="Albums: ${albumsList}">
-<div><p>ID: <span th:text="${Albums.id}"></span></p>
+<div>
+    <p>ID: <span th:text="${Albums.id}"></span></p>
     <p>Title: <span th:text="${Albums.title}"></span></p>
     <p>Artist: <span th:text="${Albums.artist}"></span></p>
     <p>Song Count: <span th:text="${Albums.songCount}"></span></p>

@@ -1,21 +1,29 @@
 package com.example.Songr.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
+
 
 @Entity
 
 public class Albums {
+
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
 
     private String title;
+
     private String artist;
+
     private int songCount;
+
     private int length;
+
     private String imageUrl;
 
     public Albums() {
@@ -29,11 +37,11 @@ public class Albums {
         this.imageUrl = imageUrl;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -75,5 +83,16 @@ public class Albums {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    @OneToMany(mappedBy = "album")// must match the same object name in Song class
+    Set<Song> songs;
+
+    public Set<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(Set<Song> songs) {
+        this.songs = songs;
     }
 }
