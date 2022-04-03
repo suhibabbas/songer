@@ -6,7 +6,6 @@ import com.example.Songr.Models.Song;
 import com.example.Songr.Repositries.AlbumRepository;
 import com.example.Songr.Repositries.AlbumRepositoryCrud;
 import com.example.Songr.Repositries.SongRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +42,29 @@ public class SongrController {
         return "index";
     }
 
+    @GetMapping("/allSongs")
+    public String addSong(Model model ){
+
+        model.addAttribute("songsList",songRepository.findAll());
+
+        return "allSongs";
+    }
+
+    @PostMapping("/addSongs")
+    public RedirectView addSong(@ModelAttribute Song song, @RequestParam Long id ){
+        Albums album =  albumRepository.findById(id).orElseThrow();
+        song.setAlbum(album);
+        songRepository.save(song);
+
+        return new RedirectView("allAlbum");
+    }
+/*
+    @ResponseBody
+    @GetMapping("/album/{id}")
+    Albums findAlbumByTitle(@PathVariable Long id){
+        return albumRepository.findById(id).orElseThrow();
+    }
+
     @ResponseBody
     @GetMapping("/Album")
     List<Albums> albums(Model model){
@@ -64,26 +86,19 @@ public class SongrController {
         return albumRepository.findAll();
     }
 
-    /**
-     * Create a new song
-     * @param song
-     * @return
-     */
-    @ResponseBody
-    @PostMapping("/song")
-    Song createNewSong(@RequestBody Song song){
-        return songRepository.save(song);
+//    @ResponseBody
+//    @PostMapping("/song")
+//    Song createNewSong(@RequestBody Song song){
+//        return songRepository.save(song);
     }
 
-    /**
-     * Gets all the carts
-     * @return
-     */
+
     @ResponseBody
     @GetMapping("/song")
     List<Song> GetAllSongs(){
         return songRepository.findAll();
     }
+
 
     @ResponseBody
     @PostMapping("/album/{id}")
@@ -94,10 +109,5 @@ public class SongrController {
 
         return songRepository.save(song);
     }
-
-    @ResponseBody
-    @GetMapping("/album/{title}")
-    Albums findAlbumByTitle(@PathVariable String title){
-        return albumRepository.findAlbumByTitle(title);
-    }
+    */
 }

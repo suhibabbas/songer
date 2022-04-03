@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<header class="w3-bar w3-black">
+    <a th:href="@{/allAlbum}" class="w3-bar-item w3-button">Add new Album/Song</a>
+</header>
+
+<H1>All the song</H1>
+
+    <div th:each="Song: ${songsList}">
+
+        <p>ID: <span th:text="${Song.id}"></span></p>
+        <p>Title: <span th:text="${Song.title}"></span></p>
+        <p>Artist: <span th:text="${Song.length}"></span></p>
+        <p>Album: <span th:text="${Song.album.title}"></span></p>
+        <p>**************************************************************</p>
+
+    </div>
+
+</body>
+</html>
