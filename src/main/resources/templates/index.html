@@ -6,29 +6,35 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
+<header>
+
+</header>
+<header class="w3-bar w3-black">
+    <a  th:href="@{/allSongs}"  class="w3-bar-item w3-button">Songs</a>
+</header>
+
 
 <H1>You can add new album</H1>
 
+
+
 <form action="/addalbum" method="post">
-
-    <p>Artist</p> <input type="text" name="artist"/>
-
-    <p>Image Url</p> <input  type="text" name="imageUrl"/>
-
-    <p>Length</p> <input type="text" name="length"/>
-
-    <p>Song Count</p> <input type="text" name="songCount"/>
-
     <p>Title</p> <input type="text" name="title"/>
-
+    <p>Artist</p> <input type="text" name="artist"/>
+    <p>Length</p> <input type="text" name="length"/>
+    <p>Song Count</p> <input type="text" name="songCount"/>
+    <p>Image Url</p> <input  type="text" name="imageUrl"/>
     <button type="submit">Submit</button>
-
 </form>
 
-<ul th:each="Albums: ${albumsList}">
+
+
+
+<ul th:each="Albums: ${albumsList} "  >
 <div>
     <p>ID: <span th:text="${Albums.id}"></span></p>
     <p>Title: <span th:text="${Albums.title}"></span></p>
@@ -36,10 +42,24 @@
     <p>Song Count: <span th:text="${Albums.songCount}"></span></p>
     <p>Length: <span th:text="${Albums.length}"></span></p>
     <p>Image Url: <span th:text="${Albums.imageUrl}"></span></p>
+
+    <form th:action="@{/addSongs(id=${Albums.id})}" method="post">
+        <p>Title</p> <input type="text" name="title"/>
+        <p>Length</p> <input type="number" name="length"/>
+        <p>Track Number</p> <input type="number" name="trackNumber"/>
+        <button type="submit">Submit</button>
+    </form>
+
     <p>**************************************************************</p>
 </div>
 
 </ul>
 
+<!--</ul>-->
+<!--<ul th:each="Song: ${songList}">-->
+<!--    <p>ID: <span th:text="${Song.id}"></span></p>-->
+<!--    <p>Title: <span th:text="${Song.title}"></span></p>-->
+<!--    <p>Album: <span th:text="*{Song.album.title}"></span></p>-->
+<!--</ul>-->
 </body>
 </html>
